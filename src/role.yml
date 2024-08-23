@@ -1,0 +1,15 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: minio-secret-reader
+  namespace: photoatom-object-storage
+  labels:
+    app: minio
+rules:
+  - apiGroups: [""]
+    resources: ["secrets"]
+    resourceNames:
+      - minio-storage-configuration
+      - minio-storage-user
+      - minio-tls
+    verbs: ["get", "watch", "list"]
