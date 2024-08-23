@@ -1,0 +1,18 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: photoatom-minio-certmanager-cert
+  namespace: photoatom-object-storage
+  labels:
+    app: minio
+spec:
+  dnsNames:
+    - "minio.photoatom-object-storage"
+    - "minio.photoatom-object-storage.svc"
+    - "minio.photoatom-object-storage.svc.cluster.local"
+    - "*.minio.photoatom-object-storage.svc.cluster.local"
+    - "*.minio-hl.photoatom-object-storage.svc.cluster.local"
+    - "*.minio.minio.photoatom-object-storage.svc.cluster.local"
+  secretName: minio-tls
+  issuerRef:
+    name: photoatom-ca-issuer
