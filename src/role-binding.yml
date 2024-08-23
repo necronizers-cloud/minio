@@ -1,0 +1,15 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: minio-role-binding
+  namespace: photoatom-object-storage
+  labels:
+    app: minio
+subjects:
+  - kind: ServiceAccount
+    name: minio-serviceaccount
+    namespace: photoatom-object-storage
+roleRef:
+  kind: Role
+  name: minio-secret-reader
+  apiGroup: rbac.authorization.k8s.io
