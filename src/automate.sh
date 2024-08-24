@@ -56,3 +56,6 @@ kubectl get secrets -n photoatom-object-storage minio-tls -o=jsonpath='{.data.ca
 kubectl create secret generic operator-ca-tls-photoatom-object-storage --from-file=ca.crt -n minio-operator
 kubectl rollout restart deployments.apps/minio-operator -n minio-operator
 rm ca.crt
+
+echo "Setting up Ingress for Console Access"
+kubectl apply -f ingress.yml
