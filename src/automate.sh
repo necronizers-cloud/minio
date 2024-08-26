@@ -30,14 +30,17 @@ sed -i "s|CONFIG_CONSOLE_SECRET_KEY|$(echo $CONFIG_CONSOLE_SECRET_KEY | base64)|
 
 kubectl apply -f storage-user-secret.yml
 
-echo "Setting up MinIO Certificate CA.."
+echo "Setting up MinIO Certificate CA and sleeping for 10 seconds..."
 kubectl apply -f ca.yml
+sleep 10
 
-echo "Setting up MinIO Certificate CA Issuer..."
+echo "Setting up MinIO Certificate CA Issuer and sleeping for 10 seconds..."
 kubectl apply -f ca-issuer.yml
+sleep 10
 
-echo "Setting up MinIO Tenant Certificate..."
+echo "Setting up MinIO Tenant Certificate and sleeping for 10 seconds..."
 kubectl apply -f tenant-certificate.yml
+sleep 10
 
 echo "Setting up MinIO Role..."
 kubectl apply -f role.yml
