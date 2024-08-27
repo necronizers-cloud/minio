@@ -70,4 +70,8 @@ spec:
     minioServiceLabels: {}
   subPath: ""
   users:
-    - name: minio-storage-user
+    - name: photoatom-storage-user
+    - name: postgres-storage-user
+  buckets:
+    - name: photoatom
+    - name: postgres

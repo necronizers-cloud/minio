@@ -18,17 +18,29 @@ sed -i "s|CONFIG_MINIO_ROOT_PASSWORD|$CONFIG_MINIO_ROOT_PASSWORD|g" storage-conf
 
 kubectl apply -f storage-config-secret.yml
 
-echo "Setting up Storage User Secrets for MinIO..."
-CONFIG_CONSOLE_ACCESS_KEY="console_user"
-CONFIG_CONSOLE_SECRET_KEY="$(openssl rand -base64 16)"
+echo "Setting up PhotoAtom Storage Secrets for MinIO..."
+PHOTOATOM_CONSOLE_ACCESS_KEY="photoatom"
+PHOTOATOM_CONSOLE_SECRET_KEY="$(openssl rand -base64 16)"
 
-sed -i "s|CONFIG_CONSOLE_ACCESS_KEY|$CONFIG_CONSOLE_ACCESS_KEY|g" secrets
-sed -i "s|CONFIG_CONSOLE_ACCESS_KEY|$(echo $CONFIG_CONSOLE_ACCESS_KEY | base64)|g" storage-user-secret.yml
+sed -i "s|PHOTOATOM_CONSOLE_ACCESS_KEY_HERE|$PHOTOATOM_CONSOLE_ACCESS_KEY|g" secrets
+sed -i "s|PHOTOATOM_CONSOLE_ACCESS_KEY_HERE|$(echo $PHOTOATOM_CONSOLE_ACCESS_KEY | base64)|g" photoatom-user-secret.yml
 
-sed -i "s|CONFIG_CONSOLE_SECRET_KEY|$CONFIG_CONSOLE_SECRET_KEY|g" secrets
-sed -i "s|CONFIG_CONSOLE_SECRET_KEY|$(echo $CONFIG_CONSOLE_SECRET_KEY | base64)|g" storage-user-secret.yml
+sed -i "s|PHOTOATOM_CONSOLE_SECRET_KEY_HERE|$PHOTOATOM_CONSOLE_SECRET_KEY|g" secrets
+sed -i "s|PHOTOATOM_CONSOLE_SECRET_KEY_HERE|$(echo $PHOTOATOM_CONSOLE_SECRET_KEY | base64)|g" photoatom-user-secret.yml
 
-kubectl apply -f storage-user-secret.yml
+kubectl apply -f photoatom-user-secret.yml
+
+echo "Setting up Postgres Storage Secrets for MinIO..."
+POSTGRES_CONSOLE_ACCESS_KEY="postgres"
+POSTGRES_CONSOLE_SECRET_KEY="$(openssl rand -base64 16)"
+
+sed -i "s|POSTGRES_CONSOLE_ACCESS_KEY_HERE|$POSTGRES_CONSOLE_ACCESS_KEY|g" secrets
+sed -i "s|POSTGRES_CONSOLE_ACCESS_KEY_HERE|$(echo $POSTGRES_CONSOLE_ACCESS_KEY | base64)|g" postgres-user-secret.yml
+
+sed -i "s|POSTGRES_CONSOLE_SECRET_KEY_HERE|$POSTGRES_CONSOLE_SECRET_KEY|g" secrets
+sed -i "s|POSTGRES_CONSOLE_SECRET_KEY_HERE|$(echo $POSTGRES_CONSOLE_SECRET_KEY | base64)|g" postgres-user-secret.yml
+
+kubectl apply -f postgres-user-secret.yml
 
 echo "Setting up MinIO Certificate CA and sleeping for 10 seconds..."
 kubectl apply -f ca.yml
