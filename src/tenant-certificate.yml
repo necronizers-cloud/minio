@@ -12,6 +12,7 @@ spec:
     - "minio.photoatom-object-storage.svc.cluster.local"
     - "*.minio.photoatom-object-storage.svc.cluster.local"
     - "*.minio-hl.photoatom-object-storage.svc.cluster.local"
+    - "minio-hl.photoatom-object-storage.svc.cluster.local"
     - "*.minio.minio.photoatom-object-storage.svc.cluster.local"
   secretName: minio-tls
   issuerRef:
