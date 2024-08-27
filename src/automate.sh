@@ -23,10 +23,10 @@ PHOTOATOM_CONSOLE_ACCESS_KEY="photoatom"
 PHOTOATOM_CONSOLE_SECRET_KEY="$(openssl rand -base64 16)"
 
 sed -i "s|PHOTOATOM_CONSOLE_ACCESS_KEY_HERE|$PHOTOATOM_CONSOLE_ACCESS_KEY|g" secrets
-sed -i "s|PHOTOATOM_CONSOLE_ACCESS_KEY_HERE|$(echo $PHOTOATOM_CONSOLE_ACCESS_KEY | base64)|g" storage-user-secret.yml
+sed -i "s|PHOTOATOM_CONSOLE_ACCESS_KEY_HERE|$(echo $PHOTOATOM_CONSOLE_ACCESS_KEY | base64)|g" photoatom-user-secret.yml
 
 sed -i "s|PHOTOATOM_CONSOLE_SECRET_KEY_HERE|$PHOTOATOM_CONSOLE_SECRET_KEY|g" secrets
-sed -i "s|PHOTOATOM_CONSOLE_SECRET_KEY_HERE|$(echo $PHOTOATOM_CONSOLE_SECRET_KEY | base64)|g" storage-user-secret.yml
+sed -i "s|PHOTOATOM_CONSOLE_SECRET_KEY_HERE|$(echo $PHOTOATOM_CONSOLE_SECRET_KEY | base64)|g" photoatom-user-secret.yml
 
 kubectl apply -f photoatom-user-secret.yml
 
@@ -35,10 +35,10 @@ POSTGRES_CONSOLE_ACCESS_KEY="postgres"
 POSTGRES_CONSOLE_SECRET_KEY="$(openssl rand -base64 16)"
 
 sed -i "s|POSTGRES_CONSOLE_ACCESS_KEY_HERE|$POSTGRES_CONSOLE_ACCESS_KEY|g" secrets
-sed -i "s|POSTGRES_CONSOLE_ACCESS_KEY_HERE|$(echo $POSTGRES_CONSOLE_ACCESS_KEY | base64)|g" storage-user-secret.yml
+sed -i "s|POSTGRES_CONSOLE_ACCESS_KEY_HERE|$(echo $POSTGRES_CONSOLE_ACCESS_KEY | base64)|g" postgres-user-secret.yml
 
 sed -i "s|POSTGRES_CONSOLE_SECRET_KEY_HERE|$POSTGRES_CONSOLE_SECRET_KEY|g" secrets
-sed -i "s|POSTGRES_CONSOLE_SECRET_KEY_HERE|$(echo $POSTGRES_CONSOLE_SECRET_KEY | base64)|g" storage-user-secret.yml
+sed -i "s|POSTGRES_CONSOLE_SECRET_KEY_HERE|$(echo $POSTGRES_CONSOLE_SECRET_KEY | base64)|g" postgres-user-secret.yml
 
 kubectl apply -f postgres-user-secret.yml
 
