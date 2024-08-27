@@ -57,7 +57,7 @@ spec:
             - ReadWriteOnce
           resources:
             requests:
-              storage: 1Gi
+              storage: 5Gi
           storageClassName: csi-hostpath-sc
       volumesPerServer: 1
   priorityClassName: ""
