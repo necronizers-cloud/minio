@@ -72,3 +72,6 @@ spec:
   users:
     - name: photoatom-storage-user
     - name: postgres-storage-user
+  buckets:
+    - name: photoatom
+    - name: postgres
