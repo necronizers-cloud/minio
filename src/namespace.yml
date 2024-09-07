@@ -1,7 +1,0 @@
-# Namespace for MinIO Tenant
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: photoatom-object-storage
-  labels:
-    app: minio
