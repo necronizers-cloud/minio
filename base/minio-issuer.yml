@@ -1,9 +1,0 @@
-# Issuer for the MinIO Operator Namespace.
-apiVersion: cert-manager.io/v1
-kind: Issuer
-metadata:
-  name: photoatom-minio-operator-ca-issuer
-  namespace: minio-operator
-spec:
-  ca:
-    secretName: operator-ca-tls
