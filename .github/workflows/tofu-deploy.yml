@@ -46,3 +46,14 @@ jobs:
     secrets:
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
 
+  secrets_deploy:
+    needs: [certificates_deploy]
+    name: MinIO Secrets Deployment onto Self Hosted K3d Cluster
+    uses: PhotoAtom/automations/.github/workflows/tofu-deploy.yml@feature/1/tf
+    with:
+      deployment_name: MinIO Secrets
+      folder_path: secrets
+      runners: photoatom
+    secrets:
+      KUBECONFIG: ${{ secrets.KUBECONFIG }}
+
