@@ -57,3 +57,14 @@ jobs:
     secrets:
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
 
+  tenant_deploy:
+    needs: [secrets_deploy]
+    name: MinIO Tenant Deployment onto Self Hosted K3d Cluster
+    uses: PhotoAtom/automations/.github/workflows/tofu-deploy.yml@feature/1/tf
+    with:
+      deployment_name: MinIO Tenant
+      folder_path: tenant
+      runners: photoatom
+    secrets:
+      KUBECONFIG: ${{ secrets.KUBECONFIG }}
+
