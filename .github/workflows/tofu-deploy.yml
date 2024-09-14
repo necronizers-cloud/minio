@@ -1,0 +1,37 @@
+name: MinIO Tenant Deployment onto Self Hosted K3d Cluster
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - feature/**
+      - bug/**
+    paths:
+      - certificates/**
+      - namespace/**
+      - secrets/**
+      - tenants/**
+  pull_request:
+    paths:
+      - certificates/**
+      - namespace/**
+      - secrets/**
+      - tenants/**
+    branches:
+      - main
+    types:
+      - opened
+      - synchronize
+      - closed
+
+jobs:
+  tofu_deploy:
+    name: MinIO Namespace Deployment onto Self Hosted K3d Cluster
+    uses: PhotoAtom/automations/.github/workflows/tofu-deploy.yml@feature/1/tf
+    with:
+      deployment_name: MinIO Namespace
+      folder_path: namespace
+      runners: photoatom
+    secrets:
+      KUBECONFIG: ${{ secrets.KUBECONFIG }}
+
