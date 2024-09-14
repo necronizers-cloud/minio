@@ -10,13 +10,13 @@ on:
       - certificates/**
       - namespace/**
       - secrets/**
-      - tenants/**
+      - tenant/**
   pull_request:
     paths:
       - certificates/**
       - namespace/**
       - secrets/**
-      - tenants/**
+      - tenant/**
     branches:
       - main
     types:
