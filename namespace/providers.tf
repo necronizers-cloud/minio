@@ -8,10 +8,9 @@ terraform {
 
   backend "kubernetes" {
     secret_suffix = "namespace.minio"
-    config_path   = "~/.kube/config"
   }
 }
 
 provider "kubernetes" {
-  config_path = "~/.kube/config"
+
 }
