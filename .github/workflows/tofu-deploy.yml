@@ -27,7 +27,7 @@ on:
 jobs:
   namespace_deploy:
     name: MinIO Namespace Deployment onto Self Hosted K3d Cluster
-    uses: PhotoAtom/automations/.github/workflows/tofu-deploy.yml@feature/1/tf
+    uses: PhotoAtom/automations/.github/workflows/tofu-deploy.yml@main
     with:
       deployment_name: MinIO Namespace
       folder_path: namespace
@@ -38,7 +38,7 @@ jobs:
   certificates_deploy:
     needs: [namespace_deploy]
     name: MinIO Certificates Deployment onto Self Hosted K3d Cluster
-    uses: PhotoAtom/automations/.github/workflows/tofu-deploy.yml@feature/1/tf
+    uses: PhotoAtom/automations/.github/workflows/tofu-deploy.yml@main
     with:
       deployment_name: MinIO Certificates
       folder_path: certificates
@@ -49,7 +49,7 @@ jobs:
   secrets_deploy:
     needs: [certificates_deploy]
     name: MinIO Secrets Deployment onto Self Hosted K3d Cluster
-    uses: PhotoAtom/automations/.github/workflows/tofu-deploy.yml@feature/1/tf
+    uses: PhotoAtom/automations/.github/workflows/tofu-deploy.yml@main
     with:
       deployment_name: MinIO Secrets
       folder_path: secrets
@@ -60,7 +60,7 @@ jobs:
   tenant_deploy:
     needs: [secrets_deploy]
     name: MinIO Tenant Deployment onto Self Hosted K3d Cluster
-    uses: PhotoAtom/automations/.github/workflows/tofu-deploy.yml@feature/1/tf
+    uses: PhotoAtom/automations/.github/workflows/tofu-deploy.yml@main
     with:
       deployment_name: MinIO Tenant
       folder_path: tenant
