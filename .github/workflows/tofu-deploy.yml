@@ -11,6 +11,7 @@ on:
       - namespace/**
       - secrets/**
       - tenant/**
+      - credentials/**
       - .github/scripts/**
   pull_request:
     paths:
@@ -18,6 +19,7 @@ on:
       - namespace/**
       - secrets/**
       - tenant/**
+      - credentials/**
       - .github/scripts/**
     branches:
       - main
@@ -71,6 +73,21 @@ jobs:
       deployment_name: MinIO Tenant
       folder_path: tenant
       runners: photoatom
+    secrets:
+      KUBECONFIG: ${{ secrets.KUBECONFIG }}
+
+  credentials_deploy:
+    needs: [tenant_deploy]
+    name: MinIO Credentials Deployment onto Self Hosted K3d Cluster
+    uses: PhotoAtom/automations/.github/workflows/tofu-deploy.yml@main
+    with:
+      deployment_name: MinIO Credentials
+      folder_path: credentials
+      runners: photoatom
+      post_apply_script: |
+        cd ../.github/scripts
+        chmod +x minio-credentials.sh
+        bash ./minio-credentials.sh
     secrets:
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
 
