@@ -43,6 +43,10 @@ jobs:
       deployment_name: MinIO Certificates
       folder_path: certificates
       runners: photoatom
+      post_apply_script: |
+        cd ../.github/scripts
+        chmod +x operator-certificate-replicate.sh
+        bash ./operator-certificate-replicate.sh
     secrets:
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
 
