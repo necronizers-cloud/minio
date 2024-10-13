@@ -11,12 +11,14 @@ on:
       - namespace/**
       - secrets/**
       - tenant/**
+      - .github/scripts/**
   pull_request:
     paths:
       - certificates/**
       - namespace/**
       - secrets/**
       - tenant/**
+      - .github/scripts/**
     branches:
       - main
     types:
@@ -43,6 +45,10 @@ jobs:
       deployment_name: MinIO Certificates
       folder_path: certificates
       runners: photoatom
+      post_apply_script: |
+        cd ../.github/scripts
+        chmod +x operator-certificate-replicate.sh
+        bash ./operator-certificate-replicate.sh
     secrets:
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
 
