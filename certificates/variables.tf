@@ -5,6 +5,11 @@ variable "namespace" {
   description = "Namespace to be used for deploying MinIO Tenant and related resources."
 }
 
+variable "cluster_issuer_name" {
+  default     = "photoatom-issuer"
+  description = "Name for the Cluster Issuer"
+}
+
 variable "minio_tenant_ca_name" {
   default     = "minio-ca"
   description = "Name for the Certificate Authority for MinIO"
