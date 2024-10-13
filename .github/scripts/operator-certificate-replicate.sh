@@ -12,7 +12,7 @@ then
 
   # Replicate certificates from MinIO Namespace to Operator Namespace
   echo "Replicating certificates from MinIO Namespace to Operator Namespace if it does not exist"
-  kubectl get secrets -n minio minio-tls -o=jsonpath='{.data.ca\\.crt}' | base64 -d > ca.crt
+  kubectl get secrets -n minio minio-tls -o=json | jq -rc '.data."ca.crt"' | base64 -d > ca.crt
   kubectl create secret generic operator-ca-tls-photoatom-object-storage --from-file=ca.crt -n minio-operator
 
   # Restart MinIO Operator Deployment

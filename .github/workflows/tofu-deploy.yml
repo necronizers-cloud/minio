@@ -11,12 +11,14 @@ on:
       - namespace/**
       - secrets/**
       - tenant/**
+      - .github/scripts/**
   pull_request:
     paths:
       - certificates/**
       - namespace/**
       - secrets/**
       - tenant/**
+      - .github/scripts/**
     branches:
       - main
     types:
