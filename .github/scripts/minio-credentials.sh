@@ -61,6 +61,10 @@ function save_credentials_to_minio {
 
 }
 
+# Sleep till Tenant is ready for connections
+echo "Sleeping till Tenant is ready for connections..."
+sleep 60
+
 # Setup port forwarding for MinIO
 echo "Setting up port forwarding for MinIO..."
 
