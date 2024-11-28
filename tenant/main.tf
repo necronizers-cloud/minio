@@ -179,6 +179,10 @@ resource "kubernetes_ingress_v1" "minio_ingress" {
     }
     annotations = {
       "cert-manager.io/cluster-issuer" : "${var.cluster_issuer_name}"
+      "cert-manager.io/common-name" : "minio-ingress"
+      "cert-manager.io/subject-organizations" : "photoatom"
+      "cert-manager.io/subject-organizationalunits" : "minio"
+      "cert-manager.io/subject-countries" : "India"
       "nginx.ingress.kubernetes.io/proxy-ssl-verify" : "off"
       "nginx.ingress.kubernetes.io/backend-protocol" : "HTTPS"
       "nginx.ingress.kubernetes.io/rewrite-target" : "/"

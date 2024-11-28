@@ -12,7 +12,12 @@ resource "kubernetes_manifest" "minio_tenant_ca" {
       }
     }
     "spec" = {
-      "isCA"       = true
+      "isCA" = true
+      "subject" = {
+        "organizations"       = ["photoatom"]
+        "countries"           = ["India"]
+        "organizationalUnits" = ["MinIO"]
+      }
       "commonName" = "minio-ca-certificate"
       "secretName" = "minio-ca-certificate-tls"
       "duration"   = "70128h"
@@ -75,6 +80,12 @@ resource "kubernetes_manifest" "tenant_certificate" {
         "minio-hl.minio.svc.cluster.local",
         "*.minio.minio.minio.svc.cluster.local",
       ]
+      "subject" = {
+        "organizations"       = ["photoatom"]
+        "countries"           = ["India"]
+        "organizationalUnits" = ["MinIO"]
+      }
+      "commonName" = "minio"
       "secretName" = "minio-tls"
       "issuerRef" = {
         "name" = "${var.minio_tenant_issuer_name}"
