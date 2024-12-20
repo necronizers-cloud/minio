@@ -35,6 +35,12 @@ variable "cluster_issuer_name" {
   description = "Name for the Cluster Issuer"
 }
 
+variable "photoatom_domain" {
+  description = "Domain to be used for Ingress"
+  default     = ""
+  type        = string
+}
+
 variable "storage_configuration_name" {
   default     = "minio-storage-configuration"
   description = "Name for the storage configuration secret"
@@ -51,6 +57,6 @@ variable "postgres_user_name" {
 }
 
 variable "host_name" {
-  default     = "storage.photoatom.local"
+  default     = "storage"
   description = "Host name to be used with MinIO Tenant Ingress"
 }
