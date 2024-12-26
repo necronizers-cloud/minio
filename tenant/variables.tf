@@ -35,7 +35,7 @@ variable "cluster_issuer_name" {
   description = "Name for the Cluster Issuer"
 }
 
-variable "photoatom_domain" {
+variable "cloud_domain" {
   description = "Domain to be used for Ingress"
   default     = ""
   type        = string
@@ -46,7 +46,7 @@ variable "storage_configuration_name" {
   description = "Name for the storage configuration secret"
 }
 
-variable "photoatom_user_name" {
+variable "app_user_name" {
   default     = "photoatom-user"
   description = "Name for the photoatom user secret"
 }
