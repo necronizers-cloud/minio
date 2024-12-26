@@ -8,7 +8,7 @@ resource "random_password" "root_password" {
   min_special      = 2
 }
 
-resource "random_password" "photoatom_password" {
+resource "random_password" "app_password" {
   length           = 16
   lower            = true
   numeric          = true
@@ -51,9 +51,9 @@ EOT
 }
 
 // MinIO Users Configuration
-resource "kubernetes_secret" "photoatom_user" {
+resource "kubernetes_secret" "app_user" {
   metadata {
-    name      = var.photoatom_user_name
+    name      = var.app_user_name
     namespace = var.namespace
 
     labels = {
@@ -63,8 +63,8 @@ resource "kubernetes_secret" "photoatom_user" {
   }
 
   data = {
-    CONSOLE_ACCESS_KEY = "photoatom"
-    CONSOLE_SECRET_KEY = "${random_password.photoatom_password.result}"
+    CONSOLE_ACCESS_KEY = "app"
+    CONSOLE_SECRET_KEY = "${random_password.app_password.result}"
   }
 
   type = "Opaque"
