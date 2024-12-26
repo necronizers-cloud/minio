@@ -8,9 +8,9 @@ variable "storage_configuration_name" {
   description = "Name for the storage configuration secret"
 }
 
-variable "photoatom_user_name" {
-  default     = "photoatom-user"
-  description = "Name for the photoatom user secret"
+variable "app_user_name" {
+  default     = "app-user"
+  description = "Name for the app user secret"
 }
 
 variable "postgres_user_name" {

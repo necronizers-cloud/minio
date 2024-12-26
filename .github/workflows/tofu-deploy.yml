@@ -31,21 +31,21 @@ on:
 jobs:
   namespace_deploy:
     name: MinIO Namespace Deployment onto Self Hosted K3d Cluster
-    uses: PhotoAtom/automations/.github/workflows/tofu-deploy.yml@main
+    uses: necronizers-cloud/automations/.github/workflows/tofu-deploy.yml@main
     with:
       deployment_name: MinIO Namespace
       folder_path: namespace
-      runners: photoatom
+      runners: cloud
     secrets: inherit
 
   certificates_deploy:
     needs: [namespace_deploy]
     name: MinIO Certificates Deployment onto Self Hosted K3d Cluster
-    uses: PhotoAtom/automations/.github/workflows/tofu-deploy.yml@main
+    uses: necronizers-cloud/automations/.github/workflows/tofu-deploy.yml@main
     with:
       deployment_name: MinIO Certificates
       folder_path: certificates
-      runners: photoatom
+      runners: cloud
       post_apply_script: |
         cd ../.github/scripts
         chmod +x operator-certificate-replicate.sh
@@ -59,31 +59,31 @@ jobs:
   secrets_deploy:
     needs: [certificates_deploy]
     name: MinIO Secrets Deployment onto Self Hosted K3d Cluster
-    uses: PhotoAtom/automations/.github/workflows/tofu-deploy.yml@main
+    uses: necronizers-cloud/automations/.github/workflows/tofu-deploy.yml@main
     with:
       deployment_name: MinIO Secrets
       folder_path: secrets
-      runners: photoatom
+      runners: cloud
     secrets: inherit
 
   tenant_deploy:
     needs: [secrets_deploy]
     name: MinIO Tenant Deployment onto Self Hosted K3d Cluster
-    uses: PhotoAtom/automations/.github/workflows/tofu-deploy.yml@main
+    uses: necronizers-cloud/automations/.github/workflows/tofu-deploy.yml@main
     with:
       deployment_name: MinIO Tenant
       folder_path: tenant
-      runners: photoatom
+      runners: cloud
     secrets: inherit
 
   credentials_deploy:
     needs: [tenant_deploy]
     name: MinIO Credentials Deployment onto Self Hosted K3d Cluster
-    uses: PhotoAtom/automations/.github/workflows/tofu-deploy.yml@main
+    uses: necronizers-cloud/automations/.github/workflows/tofu-deploy.yml@main
     with:
       deployment_name: MinIO Credentials
       folder_path: credentials
-      runners: photoatom
+      runners: cloud
       post_apply_script: |
         cd ../.github/scripts
         chmod +x minio-credentials.sh

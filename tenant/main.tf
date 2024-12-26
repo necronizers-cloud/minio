@@ -22,7 +22,7 @@ resource "kubernetes_role" "minio_service_account_role" {
   rule {
     api_groups     = [""]
     resources      = ["secrets"]
-    resource_names = [var.storage_configuration_name, "photoatom-user", "postgres-user", "minio-tls"]
+    resource_names = [var.storage_configuration_name, "app-user", "postgres-user", "minio-tls"]
     verbs          = ["get", "list", "watch"]
   }
 }
@@ -157,7 +157,7 @@ resource "kubernetes_manifest" "minio_tenant" {
       "subPath" = ""
       "users" = [
         {
-          "name" = var.photoatom_user_name
+          "name" = var.app_user_name
         },
         {
           "name" = var.postgres_user_name
@@ -190,11 +190,11 @@ resource "kubernetes_ingress_v1" "minio_ingress" {
   spec {
     ingress_class_name = "nginx"
     tls {
-      hosts       = ["${var.host_name}.${var.photoatom_domain}"]
+      hosts       = ["${var.host_name}.${var.cloud_domain}"]
       secret_name = "minio-ingress-tls"
     }
     rule {
-      host = "${var.host_name}.${var.photoatom_domain}"
+      host = "${var.host_name}.${var.cloud_domain}"
       http {
         path {
           path = "/"

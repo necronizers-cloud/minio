@@ -14,7 +14,7 @@ resource "kubernetes_manifest" "minio_tenant_ca" {
     "spec" = {
       "isCA" = true
       "subject" = {
-        "organizations"       = ["photoatom"]
+        "organizations"       = ["cloud"]
         "countries"           = ["India"]
         "organizationalUnits" = ["MinIO"]
       }
@@ -81,7 +81,7 @@ resource "kubernetes_manifest" "tenant_certificate" {
         "*.minio.minio.minio.svc.cluster.local",
       ]
       "subject" = {
-        "organizations"       = ["photoatom"]
+        "organizations"       = ["cloud"]
         "countries"           = ["India"]
         "organizationalUnits" = ["MinIO"]
       }
@@ -174,7 +174,7 @@ resource "kubernetes_manifest" "minio_ingress_certificate" {
       "duration"    = "2160h"
       "renewBefore" = "360h"
       "subject" = {
-        "organizations"       = ["photoatom"]
+        "organizations"       = ["cloud"]
         "countries"           = ["India"]
         "organizationalUnits" = ["MinIO"]
       }
@@ -183,7 +183,7 @@ resource "kubernetes_manifest" "minio_ingress_certificate" {
         "encoding"  = "PKCS1"
         "size"      = "2048"
       }
-      "dnsNames"   = ["${var.host_name}.${var.photoatom_domain}"]
+      "dnsNames"   = ["${var.host_name}.${var.cloud_domain}"]
       "secretName" = "minio-ingress-tls"
       "issuerRef" = {
         "name"  = "minio-public-issuer"
