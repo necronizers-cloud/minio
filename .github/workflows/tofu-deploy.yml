@@ -35,7 +35,7 @@ jobs:
     with:
       deployment_name: MinIO Namespace
       folder_path: namespace
-      runners: photoatom
+      runners: cloud
     secrets: inherit
 
   certificates_deploy:
@@ -45,7 +45,7 @@ jobs:
     with:
       deployment_name: MinIO Certificates
       folder_path: certificates
-      runners: photoatom
+      runners: cloud
       post_apply_script: |
         cd ../.github/scripts
         chmod +x operator-certificate-replicate.sh
@@ -63,7 +63,7 @@ jobs:
     with:
       deployment_name: MinIO Secrets
       folder_path: secrets
-      runners: photoatom
+      runners: cloud
     secrets: inherit
 
   tenant_deploy:
@@ -73,7 +73,7 @@ jobs:
     with:
       deployment_name: MinIO Tenant
       folder_path: tenant
-      runners: photoatom
+      runners: cloud
     secrets: inherit
 
   credentials_deploy:
@@ -83,7 +83,7 @@ jobs:
     with:
       deployment_name: MinIO Credentials
       folder_path: credentials
-      runners: photoatom
+      runners: cloud
       post_apply_script: |
         cd ../.github/scripts
         chmod +x minio-credentials.sh
